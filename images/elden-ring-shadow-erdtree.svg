@@ -1,18 +1,23 @@
-﻿<svg xmlns=http://www.w3.org/2000/svg viewBox=0 0 400 240 width=100% height=100%>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
   <defs>
-    <linearGradient id=bgElden x1=0% y1=0% x2=100% y2=100%>
-      <stop offset=0% stop-color=#d97706/>
-      <stop offset=50% stop-color=#451a03/>
-      <stop offset=100% stop-color=#0a0503/>
+    <linearGradient id="bgElden" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706"/>
+      <stop offset="50%" stop-color="#451a03"/>
+      <stop offset="100%" stop-color="#0a0503"/>
+    </linearGradient>
+    <linearGradient id="cardGradElden" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#19130d"/>
+      <stop offset="100%" stop-color="#0d0906"/>
     </linearGradient>
   </defs>
-  <rect width=400 height=240 fill=#0d1117/>
-  <rect x=15 y=15 width=370 height=210 rx=10 fill=#161b22 stroke=#30363d/>
-  <path d=M 15 15 L 240 15 L 180 225 L 15 225 Z fill=url(#bgElden) opacity=0.35/>
-  <text x=35 y=60 fill=#fbbf24 font-family=system-ui, sans-serif font-size=12 font-weight=700 letter-spacing=1>STEAM / XBOX / PS5</text>
-  <text x=35 y=105 fill=#ffffff font-family=system-ui, sans-serif font-size=24 font-weight=800>ELDEN RING</text>
-  <text x=35 y=130 fill=#fef3c7 font-family=system-ui, sans-serif font-size=14>Shadow of the Erdtree</text>
-  <rect x=35 y=160 width=85 height=28 rx=6 fill=#f59e0b/>
-  <text x=77 y=179 fill=#000 font-family=system-ui, sans-serif font-size=12 font-weight=800 text-anchor=middle>BESTSELLER</text>
-  <text x=135 y=180 fill=#fcd34d font-family=system-ui, sans-serif font-size=13 font-weight=600>Soulslike / Open World</text>
+  <rect width="400" height="240" fill="#0c0907"/>
+  <rect x="12" y="12" width="376" height="216" rx="8" fill="url(#cardGradElden)" stroke="#382d22"/>
+  <path d="M 12 12 L 260 12 L 180 228 L 12 228 Z" fill="url(#bgElden)" opacity="0.35"/>
+  <circle cx="330" cy="70" r="50" fill="#d97706" opacity="0.12"/>
+  <text x="32" y="55" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5">STEAM / XBOX / PS5</text>
+  <text x="32" y="98" fill="#ffffff" font-family="system-ui, sans-serif" font-size="22" font-weight="800">ELDEN RING</text>
+  <text x="32" y="124" fill="#fef3c7" font-family="system-ui, sans-serif" font-size="13">Shadow of the Erdtree</text>
+  <rect x="32" y="156" width="92" height="26" rx="5" fill="#f59e0b"/>
+  <text x="78" y="173" fill="#000000" font-family="system-ui, sans-serif" font-size="11" font-weight="800" text-anchor="middle">BESTSELLER</text>
+  <text x="136" y="174" fill="#fcd34d" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Soulslike / Open World</text>
 </svg>
