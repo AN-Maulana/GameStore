@@ -852,6 +852,92 @@ h1, h2, h3, h4 {
   line-height: 1.5;
 }
 
+.footer-social-wrapper {
+  margin-top: 16px;
+}
+
+.footer-social-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+
+.contact-social-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.social-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-title);
+  margin-bottom: 12px;
+}
+
+.social-links-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.social-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.social-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.social-btn.social-ig:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #dc2743;
+}
+
+.social-btn.social-fb:hover {
+  background-color: #1877f2;
+  border-color: #1877f2;
+}
+
+.social-btn.social-li:hover {
+  background-color: #0a66c2;
+  border-color: #0a66c2;
+}
+
+.contact-social-section .social-btn {
+  background-color: #ffffff;
+  color: var(--text-body);
+  border-color: var(--border-color);
+}
+
+.contact-social-section .social-btn:hover {
+  color: #ffffff;
+}
+
 .footer-heading {
   font-size: 0.92rem;
   font-weight: 700;

@@ -132,7 +132,7 @@ function beliGame(namaGame) {
   selectedGame.innerText = namaGame;
 
   const pesanWA = encodeURIComponent(`Halo Admin GameZone Store, saya ingin memesan game "${namaGame}" original. Mohon informasi cara pembayaran dan pengiriman CD Key.`);
-  waBtn.href = `https://wa.me/6281234567890?text=${pesanWA}`;
+  waBtn.href = `https://wa.me/6282296117166?text=${pesanWA}`;
 
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
