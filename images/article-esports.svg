@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="esportsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e1035" />
+    </linearGradient>
+    <linearGradient id="trophyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="laserCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="laserMagenta" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0" />
+    </linearGradient>
+    <filter id="esportsGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#esportsBg)" />
+
+  <!-- Stadium Searchlights -->
+  <polygon points="0,0 280,450 160,450" fill="url(#laserCyan)" opacity="0.4" />
+  <polygon points="800,0 520,450 640,450" fill="url(#laserMagenta)" opacity="0.4" />
+  <polygon points="120,0 360,450 260,450" fill="url(#laserCyan)" opacity="0.25" />
+  <polygon points="680,0 440,450 540,450" fill="url(#laserMagenta)" opacity="0.25" />
+
+  <!-- Stadium Stage Glow -->
+  <ellipse cx="400" cy="380" rx="280" ry="60" fill="#6366f1" opacity="0.3" filter="url(#esportsGlow)" />
+  <ellipse cx="400" cy="380" rx="200" ry="40" fill="#38bdf8" opacity="0.25" />
+
+  <!-- Stage Platform -->
+  <polygon points="160,410 240,350 560,350 640,410" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" />
+  <polygon points="200,430 260,390 540,390 600,430" fill="#0f172a" stroke="#ec4899" stroke-width="1" />
+
+  <!-- Giant Backdrop Screens -->
+  <g opacity="0.4">
+    <rect x="80" y="80" width="180" height="120" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="1.5" />
+    <path d="M110 140 L140 110 L170 140 L200 120 L230 150" fill="none" stroke="#06b6d4" stroke-width="2" />
+    <text x="170" y="180" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">TEAM BLUE • 14 PTS</text>
+  </g>
+  <g opacity="0.4">
+    <rect x="540" y="80" width="180" height="120" rx="8" fill="#1e293b" stroke="#ec4899" stroke-width="1.5" />
+    <path d="M570 150 L600 130 L630 145 L660 115 L690 140" fill="none" stroke="#ec4899" stroke-width="2" />
+    <text x="630" y="180" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">TEAM RED • 12 PTS</text>
+  </g>
+
+  <!-- Central Trophy Glow -->
+  <circle cx="400" cy="220" r="90" fill="#f59e0b" opacity="0.2" filter="url(#esportsGlow)" />
+
+  <!-- Esports Championship Trophy -->
+  <!-- Cup Base -->
+  <rect x="360" y="320" width="80" height="16" rx="4" fill="#475569" stroke="#f59e0b" stroke-width="1" />
+  <rect x="375" y="300" width="50" height="20" fill="url(#trophyGrad)" />
+  <polygon points="380,300 420,300 415,260 385,260" fill="url(#trophyGrad)" />
+
+  <!-- Main Cup -->
+  <path d="M340 140 C340 250 460 250 460 140 Z" fill="url(#trophyGrad)" filter="url(#esportsGlow)" />
+  <ellipse cx="400" cy="140" rx="60" ry="14" fill="#fef08a" />
+
+  <!-- Trophy Handles -->
+  <path d="M340 160 C300 170 300 220 345 230" fill="none" stroke="url(#trophyGrad)" stroke-width="8" stroke-linecap="round" />
+  <path d="M460 160 C500 170 500 220 455 230" fill="none" stroke="url(#trophyGrad)" stroke-width="8" stroke-linecap="round" />
+
+  <!-- Star Emblems on Trophy -->
+  <polygon points="400,165 404,175 415,176 407,183 409,194 400,188 391,194 393,183 385,176 396,175" fill="#ffffff" />
+
+  <!-- Floating Streamer / Audience Silhouette -->
+  <path d="M0 450 Q200 410 400 430 Q600 410 800 450 L800 450 L0 450 Z" fill="#030712" />
+  <circle cx="280" cy="425" r="16" fill="#0f172a" />
+  <circle cx="340" cy="420" r="14" fill="#0f172a" />
+  <circle cx="460" cy="420" r="14" fill="#0f172a" />
+  <circle cx="520" cy="425" r="16" fill="#0f172a" />
+
+  <!-- Text Banner -->
+  <g transform="translate(400, 70)" text-anchor="middle">
+    <rect x="-120" y="-16" width="240" height="32" rx="16" fill="#1e1b4b" stroke="#818cf8" stroke-width="2" />
+    <text x="0" y="6" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="13" font-weight="800" fill="#e0e7ff" letter-spacing="2">INDONESIA ESPORTS ARENA</text>
+  </g>
+</svg>
