@@ -909,6 +909,15 @@ function bacaArtikel(articleId) {
   const article = articlesData.find(a => a.id === articleId);
   if (!article) return;
 
+  const siloArticles = articlesData
+    .filter(item => item.category === article.category && item.id !== article.id)
+    .slice(0, 3);
+  const relatedLinks = siloArticles.length
+    ? siloArticles.map(item =>
+      `<li><a href="#baca-${item.id}" onclick="bacaArtikel('${item.id}'); return false;">${escapeHtml(item.title)}</a></li>`
+    ).join('')
+    : '<li><a href="#artikel">Lihat semua artikel GameZone Store</a></li>';
+
   currentOpenArticleId = articleId;
   const modal = document.getElementById('articleModal');
   const modalContent = document.getElementById('articleModalContent');
@@ -921,6 +930,14 @@ function bacaArtikel(articleId) {
     </div>
 
     <div class="article-modal-inner">
+      <nav class="article-silo-breadcrumb" aria-label="Breadcrumb artikel">
+        <a href="#home">Beranda</a>
+        <span>&rsaquo;</span>
+        <a href="#artikel">Panduan Gaming</a>
+        <span>&rsaquo;</span>
+        <span>${escapeHtml(article.categoryLabel)}</span>
+      </nav>
+
       <div class="article-modal-meta-top">
         <span class="article-badge ${article.badgeClass}">${escapeHtml(article.categoryLabel)}</span>
         <span class="article-read-badge" style="position:static; background:var(--bg-subtle); color:var(--text-body);">⏱️ ${escapeHtml(article.readTime)}</span>
@@ -945,6 +962,12 @@ function bacaArtikel(articleId) {
           </div>
           <a href="#game" class="btn btn-primary btn-sm" onclick="tutupModalArtikel()">Lihat Katalog Game</a>
         </div>
+
+        <aside class="article-related-silo">
+          <h3>Baca Artikel Terkait dalam Topik ${escapeHtml(article.categoryLabel)}</h3>
+          <ul>${relatedLinks}</ul>
+          <p style="margin-top:10px;margin-bottom:0;"><a href="#promo" onclick="tutupModalArtikel()">Cek promo game original terbaru &rarr;</a></p>
+        </aside>
       </div>
 
       <div class="article-modal-footer">
