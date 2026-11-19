@@ -22,12 +22,14 @@ function initMobileNav() {
     const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', !isExpanded);
     mainNav.classList.toggle('open');
+    document.body.classList.toggle('nav-open', !isExpanded);
   });
 
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       mainNav.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open');
     });
   });
 }
@@ -92,7 +94,7 @@ function salinKodeVoucher() {
   const alertEl = document.getElementById('copyNotification');
   const copyBtn = document.getElementById('copyCouponBtn');
 
-  navigator.clipboard.writeText(couponText).then(() => {
+  copyTextToClipboard(couponText).then(() => {
     alertEl.innerText = `✓ Kode "${couponText}" berhasil disalin ke clipboard!`;
     copyBtn.innerText = 'Tersalin!';
     copyBtn.style.backgroundColor = '#10b981';
@@ -107,8 +109,40 @@ function salinKodeVoucher() {
   });
 }
 
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  document.body.removeChild(textarea);
+  if (!copied) throw new Error('Clipboard tidak tersedia');
+}
+
 function initCountdownTimer() {
-  let totalSeconds = 14 * 3600 + 45 * 60 + 20;
+  const storageKey = 'gamezone-promo-end';
+  let endTime = 0;
+  try {
+    endTime = Number(localStorage.getItem(storageKey));
+  } catch (error) {
+    endTime = 0;
+  }
+  if (!endTime || endTime <= Date.now()) {
+    endTime = Date.now() + (14 * 3600 + 45 * 60 + 20) * 1000;
+    try {
+      localStorage.setItem(storageKey, String(endTime));
+    } catch (error) {
+      // Timer tetap berfungsi dalam sesi meskipun penyimpanan browser diblokir.
+    }
+  }
 
   const hoursEl = document.getElementById('hoursVal');
   const minutesEl = document.getElementById('minutesVal');
@@ -117,12 +151,14 @@ function initCountdownTimer() {
   if (!hoursEl || !minutesEl || !secondsEl) return;
 
   const interval = setInterval(() => {
+    let totalSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
     if (totalSeconds <= 0) {
+      hoursEl.innerText = '00';
+      minutesEl.innerText = '00';
+      secondsEl.innerText = '00';
       clearInterval(interval);
       return;
     }
-
-    totalSeconds--;
 
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -145,6 +181,7 @@ function beliGame(namaGame) {
   const waBtn = document.getElementById('whatsappCheckoutBtn');
 
   if (!modal) return;
+  if (!modalTitle || !selectedGame || !waBtn) return;
 
   modalTitle.innerText = `Beli Game: ${namaGame}`;
   selectedGame.innerText = namaGame;
@@ -154,6 +191,7 @@ function beliGame(namaGame) {
 
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 }
 
 function tutupModal() {
@@ -162,6 +200,7 @@ function tutupModal() {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
   }
+  document.body.style.overflow = '';
 }
 
 /* ==========================================================================
@@ -179,8 +218,11 @@ function handleFormSubmit(event) {
   const form = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submitBtn');
 
-  if (!name || !email || !message) {
-    alert('Mohon lengkapi semua kolom formulir yang bertanda bintang (*).');
+  if (!name || !email || !subject || !message) {
+    alertBox.style.display = 'block';
+    alertBox.className = 'form-feedback-alert';
+    alertBox.className = 'form-feedback-alert form-feedback-error';
+    alertBox.innerHTML = '<strong>Pesan belum dikirim.</strong> Mohon lengkapi semua kolom wajib.';
     return;
   }
 
@@ -794,7 +836,8 @@ function renderArticles() {
     const matchSearch = currentArticleSearch === '' || 
       item.title.toLowerCase().includes(currentArticleSearch) ||
       item.excerpt.toLowerCase().includes(currentArticleSearch) ||
-      item.categoryLabel.toLowerCase().includes(currentArticleSearch);
+      item.categoryLabel.toLowerCase().includes(currentArticleSearch) ||
+      item.author.toLowerCase().includes(currentArticleSearch);
 
     return matchCategory && matchSearch;
   });
@@ -936,7 +979,7 @@ function tutupModalArtikel() {
   currentOpenArticleId = null;
 
   if (history.pushState && window.location.hash.startsWith('#baca-art-')) {
-    history.pushState(null, null, '#artikel');
+    history.replaceState(null, null, '#artikel');
   }
 }
 
@@ -944,7 +987,7 @@ function salinLinkArtikel(articleId) {
   const url = `${window.location.origin}${window.location.pathname}#baca-${articleId}`;
   const btn = document.getElementById('copyArticleBtn');
 
-  navigator.clipboard.writeText(url).then(() => {
+  copyTextToClipboard(url).then(() => {
     if (btn) {
       const originalText = btn.innerHTML;
       btn.innerHTML = '✓ Tautan Tersalin!';
@@ -990,6 +1033,14 @@ window.addEventListener('click', (event) => {
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     tutupModal();
+    tutupModalArtikel();
+  }
+});
+
+window.addEventListener('popstate', () => {
+  if (window.location.hash.startsWith('#baca-art-')) {
+    checkUrlHashForArticle();
+  } else if (document.getElementById('articleModal')?.classList.contains('show')) {
     tutupModalArtikel();
   }
 });
